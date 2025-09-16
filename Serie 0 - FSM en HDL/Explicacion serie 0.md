@@ -137,10 +137,10 @@ En el diseño usamos un `typedef enum logic [1:0] { DOWN, UP_START, UP, DOWN_STA
 
 ## 6. Diagramas
 
-![Diagrama de estados - M1](images/diagramaMEF1.png)
+![Diagrama de estados - M1](../images/diagramaMEF1.png)
 *Figura 1 — Diagrama de estados de M1 (Moore).*
 
-![Diagrama de estados - M2](images/diagramaMEF2.png)
+![Diagrama de estados - M2](../images/diagramaMEF2.png)
 *Figura 2 — Diagrama de estados de M2 (Mealy).*
 
 ## Video explicativo
