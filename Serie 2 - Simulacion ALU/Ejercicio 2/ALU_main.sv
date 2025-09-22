@@ -2,36 +2,47 @@
 
 module ALU_main(
     input  logic [6:0] A, B,
-    input  logic [1:0] OP,
-    output logic [7:0] Resultado,
-    output logic CarryOut, Overflow, Cero
+    input  logic [1:0] OP,            // 00=SUMA, 01=RESTA, 10=AND, 11=OR
+    output logic [6:0] Resultado,
+    output logic CarryOut, Overflow, Cero, Negativo
 );
-    logic [7:0] sum, sub;
+    logic [6:0] sum;
+    logic sub;
+    logic [6:0] B2;
+    logic cout;
 
-    assign sum = A + B;
-    assign sub = A + (~B + 1'b1); // Complemento A2
+    // Control de resta
+    assign sub = (OP == 2'b01);
+    assign B2  = sub ? ~B : B;
 
+    // Instancia sumador de 7 bits
+    B7Adder Adder7bits (
+        .A(A),
+        .B(B2),
+        .Cin(sub),
+        .S(sum),
+        .Cout(cout)
+    );
+
+    // Selección de operación
     always_comb begin
-        Resultado = '0;
         case (OP)
-            2'b00: Resultado = sum;           // SUMA
-            2'b01: Resultado = sub;           // RESTA
-            2'b10: Resultado = {1'b0, A & B}; // AND
-            2'b11: Resultado = {1'b0, A | B}; // OR
+            2'b00: Resultado = sum;      // SUMA
+            2'b01: Resultado = sum;      // RESTA
+            2'b10: Resultado = A & B;    // AND
+            2'b11: Resultado = A | B;    // OR
         endcase
     end
 
     // Banderas
-    assign CarryOut = (OP == 2'b00) ? sum[7] : 1'b0;
-
-    assign Overflow = (OP == 2'b01) ?
-                       (A[6] & ~B[6] & ~sub[6]) |
-                       (~A[6] & B[6] & sub[6]) :
-                       1'b0;
-
-    assign Cero = (Resultado == 0);
-
+    assign Cero     = (Resultado == 0 & CarryOut == 0);                   
+    assign Negativo = (OP == 2'b00 || OP == 2'b01) ? Resultado[6] : 1'b0;
+    assign Overflow = (OP == 2'b00 || OP == 2'b01) ?
+                      (A[6] & B2[6] & ~sum[6]) | (~A[6] & ~B2[6] & sum[6]) :
+                      1'b0;
+    assign CarryOut = (OP == 2'b00) ? cout : 1'b0;
 endmodule
+
 
 // --------
 

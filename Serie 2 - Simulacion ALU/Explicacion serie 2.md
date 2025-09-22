@@ -56,7 +56,7 @@ El resultado de los **shifts** se conecta como entrada auxiliar para las 4 opera
   - `ALUControl` (4 bits, selecciona entre 6 operaciones)  
 
 - **Salida:**  
-  - `Resultado` (8 bits, incluye `CarryOut`)  
+  - `Resultado` (7 bits)  
   - `Flags`:  
     - `Cero` (cuando el resultado es 0)  
     - `Neg` (cuando el resultado es negativo)  
@@ -81,7 +81,9 @@ El resultado de los **shifts** se conecta como entrada auxiliar para las 4 opera
 
 - Control de operación expandido para soportar 6 funciones.
 
-- **Salidas:** Resultado[7:0], CarryOut, Overflow, Cero.
+- **Salidas:** Resultado[6:0], CarryOut, Overflow, Negativo y Cero.
+
+- Para la suma se utiliza un circuito sumador FullAdder anidados para 7 bits.
 
 - La lógica de Overflow y CarryOut se maneja en función de si la operación es suma o resta.
 
@@ -90,4 +92,4 @@ El resultado de los **shifts** se conecta como entrada auxiliar para las 4 opera
 
 ## Video explicativo
 
-🔗 [Explicación ALU en Logisim – Serie 2, Ejercicio 1](https://youtu.be/DH39wHL2PXU)
+🔗 [Explicación ALU en Logisim – Serie 2, Ejercicio 1](https://youtu.be/xe6qaLfySUM)

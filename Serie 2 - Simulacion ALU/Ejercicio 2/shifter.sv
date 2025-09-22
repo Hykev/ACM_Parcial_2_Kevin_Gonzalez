@@ -1,5 +1,3 @@
-`timescale 1ns / 1ps
-
 module shifter (
     input  logic [6:0] A,
     input  logic [1:0] OP2,   // 00=normal, 01=right, 10=left
@@ -17,4 +15,6 @@ endmodule
 
 // 1010110
 
-// 0101101
+// 
+
+

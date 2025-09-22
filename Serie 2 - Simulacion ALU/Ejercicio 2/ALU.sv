@@ -3,8 +3,8 @@
 module ALU (
     input  logic [6:0] A, B,
     input  logic [3:0] ALUControl,   // bits [3:2] de shift y bits [1:0] de op
-    output logic [7:0] Resultado,
-    output logic CarryOut, Overflow, Cero
+    output logic [6:0] Resultado,
+    output logic CarryOut, Overflow, Cero, Negativo
 );
     logic [6:0] A_shifted;
 
@@ -23,6 +23,7 @@ module ALU (
         .Resultado(Resultado),
         .CarryOut(CarryOut),
         .Overflow(Overflow),
-        .Cero(Cero)
+        .Cero(Cero),
+        .Negativo(Negativo)
     );
 endmodule
