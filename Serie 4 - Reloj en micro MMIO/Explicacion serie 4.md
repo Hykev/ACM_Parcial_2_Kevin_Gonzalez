@@ -102,7 +102,10 @@ El código se adjunta en el repositorio/documentación con comentarios línea po
 
 ## 🎥 Video explicativo
 
-🔗 [Explicación Reloj Digital en STM32 – Serie 4](https://youtu.be/XXXXXXXX) *(ejemplo, pendiente de adjuntar)*
+- 
+🔗 [Explicación Reloj Digital - Físico – Serie 4](https://youtu.be/5oLm2V7d4OQ)
+
+🔗 [Explicación Reloj Digital - Código en STM32 – Serie 4](https://youtu.be/8-lAR5zSuz8)
 
 ---
 
